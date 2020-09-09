@@ -1,5 +1,18 @@
-const yargs = require('yargs');
-const inquirer = require('inquirer');
+import * as path from 'path';
+import inquirer = require('inquirer');
+// import { readFileSync } from 'fs';
+
+function createFileStructure(): void {}
+
+function getCurrentDir(): String {
+  const cwd = path.dirname(__dirname);
+  console.log(cwd);
+  return cwd;
+}
+
+function createFolderByName(folderName: String): boolean {
+  return true;
+}
 
 const start = () => {
   inquirer
@@ -33,11 +46,16 @@ const start = () => {
         type: 'input',
         name: 'file_name',
         message: 'What is the name of the file',
+        default: function (): String {
+          return 'Example';
+        },
       },
     ])
     .then((answers: any) => {
       // Use user feedback for... whatever!!
       console.log(JSON.stringify(answers, null, '  '));
+      const dir = getCurrentDir();
+      console.log(dir);
     })
     .catch((error: Error) => {
       if (error) {
