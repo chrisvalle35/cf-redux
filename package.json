@@ -10,13 +10,14 @@
     "lint": "tslint -p tsconfig.json",
     "prepare": "npm run build",
     "start": "node ./lib/index.js",
-    "start:dev": "nodemon",
+    "start:dev": "npm run build && npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Chris Valle",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^14.6.2",
+    "@types/inquirer": "^7.3.1",
+    "@types/node": "^14.6.4",
     "@types/yargs": "^15.0.5",
     "nodemon": "^2.0.4",
     "prettier": "^2.1.1",
@@ -27,6 +28,7 @@
   },
   "dependencies": {
     "chalk": "^4.1.0",
+    "inquirer": "^7.3.3",
     "yargs": "^15.4.1"
   }
 }

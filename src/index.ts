@@ -1,47 +1,44 @@
 const yargs = require('yargs');
+const inquirer = require('inquirer');
 
-console.log(chalk.yellow(figlet.textSync('Ginit', { horizontalLayout: 'full' })));
+inquirer
+  .prompt([
+    /* Pass your questions in here */
 
-const argv = yargs
-  .command('redux', 'Tells whether an year is leap year or not', {
-    year: {
-      description: 'the year to check for',
-      alias: 'y',
-      type: 'number',
+    {
+      type: 'list',
+      name: 'theme',
+      message: 'What do you want to do?',
+      choices: [
+        'Order a pizza',
+        'Make a reservation',
+        new inquirer.Separator(),
+        'Ask for opening hours',
+        {
+          name: 'Contact support',
+          disabled: 'Unavailable at this time',
+        },
+        'Talk to the receptionist',
+      ],
     },
+    {
+      type: 'list',
+      name: 'size',
+      message: 'What size do you need?',
+      choices: ['Jumbo', 'Large', 'Standard', 'Medium', 'Small', 'Micro'],
+      filter: function (val: any) {
+        return val.toLowerCase();
+      },
+    },
+  ])
+  .then((answers: any) => {
+    // Use user feedback for... whatever!!
+    console.log(JSON.stringify(answers, null, '  '));
   })
-  .option('time', {
-    alias: 't',
-    description: 'Tell the present Time',
-    type: 'boolean',
-  })
-  .help()
-  .alias('help', 'h').argv;
-
-if (argv.time) {
-  console.log('The current time is: ', new Date().toLocaleTimeString());
-}
-
-if (argv._.includes('redux')) {
-  const year = argv.year || new Date().getFullYear();
-  if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
-    console.log(`${year} is a Leap Year`);
-  } else {
-    console.log(`${year} is NOT a Leap Year`);
-  }
-}
-
-// const fs = require('fs');
-// const path = require('path');
-
-// module.exports = {
-//   getCurrentDirectoryBase: () => {
-//     return path.basename(process.cwd());
-//   },
-
-//   directoryExists: (filePath) => {
-//     return fs.existsSync(filePath);
-//   }
-// };
-
-console.log(argv);
+  .catch((error: Error) => {
+    if (error) {
+      // Prompt couldn't be rendered in the current environment
+    } else {
+      // Something else when wrong
+    }
+  });
