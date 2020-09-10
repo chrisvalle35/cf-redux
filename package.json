@@ -3,6 +3,7 @@
   "version": "2.2.0",
   "description": "A generator specific to Cache Flow",
   "main": "src/index.js",
+  "bin": "./bin/index.js",
   "scripts": {
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "start": "node ./src/index.js",
