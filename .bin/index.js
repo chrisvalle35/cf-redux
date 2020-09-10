@@ -1,4 +1,2 @@
-const start = require('../src/index');
-
+require('../src/index');
 console.log('Starting...');
-start();
