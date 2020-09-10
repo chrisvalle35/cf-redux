@@ -11,9 +11,11 @@ function createFileStructure() {
 }
 
 function getCurrentDir() {
-  const cwd = path.dirname(__dirname);
-  console.log(cwd);
-  return cwd;
+  const dirName = path.dirname(__dirname);
+  const cwd = process.cwd();
+  console.log('dirName', dirName);
+  console.log('cwd', cwd);
+  return dirName;
 }
 
 function createFolderByName(folderName) {
@@ -61,7 +63,6 @@ const start = () => {
       // Use user feedback for... whatever!!
       console.log(JSON.stringify(answers, null, '  '));
       const dir = getCurrentDir();
-      console.log(dir);
     })
     .catch((error) => {
       if (error) {
