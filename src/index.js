@@ -1,16 +1,22 @@
-import * as path from 'path';
-import inquirer = require('inquirer');
-// import { readFileSync } from 'fs';
+const path = require('path');
+const inquirer = require('inquirer');
+const { writeFile } = require('fs');
 
-function createFileStructure(): void {}
+function createFileStructure() {
+  const file = writeFile('./', '', (err, data) => {
+    console.log(data);
+    return true;
+  });
+  return false;
+}
 
-function getCurrentDir(): String {
+function getCurrentDir() {
   const cwd = path.dirname(__dirname);
   console.log(cwd);
   return cwd;
 }
 
-function createFolderByName(folderName: String): boolean {
+function createFolderByName(folderName) {
   return true;
 }
 
@@ -46,18 +52,18 @@ const start = () => {
         type: 'input',
         name: 'file_name',
         message: 'What is the name of the file',
-        default: function (): String {
+        default: function () {
           return 'Example';
         },
       },
     ])
-    .then((answers: any) => {
+    .then((answers) => {
       // Use user feedback for... whatever!!
       console.log(JSON.stringify(answers, null, '  '));
       const dir = getCurrentDir();
       console.log(dir);
     })
-    .catch((error: Error) => {
+    .catch((error) => {
       if (error) {
         // Prompt couldn't be rendered in the current environment
       } else {
