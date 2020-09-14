@@ -13,7 +13,7 @@ const REDUX_FILE_MAP = [
 async function createFileStructure(folderName = 'Example') {
   try {
     REDUX_FILE_MAP.forEach(async (file) => {
-      const filePath = `./store/${folderName}/${file.fileName}`;
+      const filePath = `./src/store/${folderName}/${file.fileName}`;
       await fs.promises.writeFile(filePath, file.fileData);
     });
     return true;
@@ -31,7 +31,7 @@ function getCurrentDir() {
   return dirName;
 }
 
-async function createFolderByName(folderPath = './store/Example') {
+async function createFolderByName(folderPath = './src/store/Example') {
   console.log('Creating New Folder...');
   try {
     await fs.promises.mkdir(`${folderPath}`, { recursive: true });
@@ -42,7 +42,7 @@ async function createFolderByName(folderPath = './store/Example') {
   }
 }
 
-async function doesFolderExist(folderPath = `${process.cwd()}/store/Example`) {
+async function doesFolderExist(folderPath = `${process.cwd()}/src/store/Example`) {
   try {
     console.log('FolderPath', folderPath);
     const doesExist = await fs.promises.access(folderPath);
@@ -53,7 +53,7 @@ async function doesFolderExist(folderPath = `${process.cwd()}/store/Example`) {
       return true;
     }
   } catch (error) {
-    console.log('Folder does not exist', error);
+    // console.log('Folder does not exist', error);
     const newFolder = await createFolderByName(folderPath);
     console.log(newFolder);
     return newFolder;
@@ -102,7 +102,8 @@ const start = () => {
       if (answers.fileType === 'Redux') {
         console.log('Creating Redux Files...');
       }
-      const folderPath = `./store/${answers.fileName}/`;
+      // Use 'GetCurrentDir API for this you dummy
+      const folderPath = `./src/store/${answers.fileName}/`;
       console.log('folderPath');
       console.log(folderPath);
       const doesExist = await doesFolderExist(folderPath);
