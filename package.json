@@ -4,6 +4,13 @@
   "description": "A generator specific to Cache Flow",
   "main": "src/index.js",
   "bin": "./.bin/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chrisvalle35/cf-redux"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/chrisvalle35"
+  },
   "scripts": {
     "deploy": "npm version minor && npm publish",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
