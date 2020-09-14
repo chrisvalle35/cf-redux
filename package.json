@@ -9,7 +9,7 @@
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "start": "node ./src/index.js",
     "start:dev": "nodemon src/index.js",
-    "test": "npx cf-redux"
+    "test": "echo 'Testing'"
   },
   "author": "Chris Valle",
   "license": "ISC",
