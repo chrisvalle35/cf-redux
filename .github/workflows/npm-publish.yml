@@ -5,6 +5,8 @@ name: cf-redux
 on:
   workflow_dispatch:
   push:
+    branches:
+      - master
   release:
     types: [created]
 
@@ -44,11 +46,12 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 
+      # Publish to Github Package Manager
       - uses: actions/setup-node@v1
         with:
-          registry-url: https://npm.pkg.github.com/
+          registry-url: https://npm.pkg.github.com/chrisvalle35
           scope: '@chrisvalle35'
-      # - run: npm ci
+      - run: npm config set scope "@chrisvalle35"
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
