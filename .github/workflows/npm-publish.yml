@@ -46,35 +46,35 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 
-  bump-version:
-    needs: publish-npm
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - uses: mikeal/merge-release@v4.0.7
-        with:
-          NPM_AUTH_TOKEN: ${{secrets.npm_token}}
-      - run: git config user.email "chrisvalle35@gmail.com"
-      - run: git config user.name "Robo Chris"
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_AUTH_TOKEN: ${{ secrets.npm_token }}
-          DEPLOY_DIR: ./
-          SRC_PACKAGE_DIR: ./
-
-  # publish-gpr:
-  #   needs: build
+  # bump-version:
+  #   needs: publish-npm
   #   runs-on: ubuntu-latest
   #   steps:
   #     - uses: actions/checkout@v2
   #     - uses: actions/setup-node@v1
+  #     - uses: mikeal/merge-release@v4.0.7
   #       with:
-  #         node-version: 12
-  #         registry-url: https://npm.pkg.github.com/
-  #         token: ${{ secrets.NPM_TOKEN }}
-  #     # - run: npm ci
-  #     - run: npm publish
+  #         NPM_AUTH_TOKEN: ${{secrets.npm_token}}
+  #     - run: git config user.email "chrisvalle35@gmail.com"
+  #     - run: git config user.name "Robo Chris"
   #       env:
-  #         NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  #         NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #         NPM_AUTH_TOKEN: ${{ secrets.npm_token }}
+  #         DEPLOY_DIR: ./
+  #         SRC_PACKAGE_DIR: ./
+
+  publish-gpr:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://npm.pkg.github.com/
+          token: ${{ secrets.NPM_TOKEN }}
+      # - run: npm ci
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
