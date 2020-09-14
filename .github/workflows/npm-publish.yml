@@ -29,22 +29,22 @@ jobs:
       - run: npm install --prod
       - run: npm test
 
-  publish-npm:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-          registry-url: https://registry.npmjs.org/
-          token: ${{ secrets.NPM_TOKEN }}
-      # - run: npm ci
-      - run: git config user.email "chrisvalle35@gmail.com"
-      - run: git config user.name "Robo Chris"
-      - run: npm run deploy
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+  # publish-npm:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: actions/setup-node@v1
+  #       with:
+  #         node-version: 12
+  #         registry-url: https://registry.npmjs.org/
+  #         token: ${{ secrets.NPM_TOKEN }}
+  #     # - run: npm ci
+  #     - run: git config user.email "chrisvalle35@gmail.com"
+  #     - run: git config user.name "Robo Chris"
+  #     - run: npm run deploy
+  #       env:
+  #         NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 
   publish-gpr:
     needs: build
