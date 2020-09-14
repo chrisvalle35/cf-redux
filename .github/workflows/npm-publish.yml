@@ -10,6 +10,16 @@ on:
     types: [created]
 
 jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: git config --global user.email "chrisvalle35@gmail.com"
+      - run: git config --global user.name "Robo Chris"
+
   build:
     runs-on: ubuntu-latest
     steps:
