@@ -44,7 +44,7 @@ jobs:
       - run: npm run deploy
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
-    steps:
+
       - uses: actions/setup-node@v1
         with:
           registry-url: https://npm.pkg.github.com/
